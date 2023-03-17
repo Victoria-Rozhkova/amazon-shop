@@ -1,8 +1,9 @@
-import { NextPage } from 'next';
+import { NextPage } from 'next'
 
+import Meta from '@/ui/meta'
 
 const Auth: NextPage = () => {
-	return <div></div>
+	return <Meta title='Auth'></Meta>
 }
 
 export default Auth

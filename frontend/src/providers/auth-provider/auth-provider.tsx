@@ -25,8 +25,8 @@ const AuthProvider: FC<PropsWithChildren<ComponentAuthFields>> = ({
 	}, [])
 
 	useEffect(() => {
-		const resfeshToken = Cookies.get(TokensEnum.refreshToken)
-		if (!resfeshToken && user) logout()
+		const refreshToken = Cookies.get(TokensEnum.refreshToken)
+		if (!refreshToken && user) logout()
 	}, [pathname])
 
 	return isUser ? (
