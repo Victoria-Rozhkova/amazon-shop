@@ -4,7 +4,7 @@ import type { AppProps } from 'next/app'
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
 
-import '@/assets/styles/globals.css'
+import '@/assets/styles/globals.scss'
 import { ComponentAuthFields } from '@/providers/auth-provider/auth-page.types'
 import AuthProvider from '@/providers/auth-provider/auth-provider'
 import { persistor, store } from '@/store/store'
