@@ -1,5 +1,4 @@
-import { NextPage } from 'next';
-
+import { NextPage } from 'next'
 
 const HomePage: NextPage = () => {
 	return <div>HomePage</div>
