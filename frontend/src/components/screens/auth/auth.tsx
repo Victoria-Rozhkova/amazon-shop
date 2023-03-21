@@ -5,12 +5,11 @@ import { SubmitHandler } from 'react-hook-form/dist/types'
 import { validEmail } from './validation'
 import { useActions } from '@/hooks/useActions'
 import { useAuth } from '@/hooks/useAuth'
+import { useAuthRedirect } from '@/hooks/useAuthRedirect'
 import { AuthEnum, IEmailPassword } from '@/store/user/user.interface'
 import { Button, Heading, Input } from '@/ui/index'
 import { Loader } from '@/ui/loader'
 import Meta from '@/ui/meta'
-import { useAuthRedirect } from '@/hooks/useAuthRedirect'
-import { removeFromStorage } from '@/services/auth/auth.helper'
 
 const Auth: FC = () => {
 	const { isLoading } = useAuth()

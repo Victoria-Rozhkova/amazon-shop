@@ -16,5 +16,12 @@ export const ReviewService = {
 			method: 'POST',
 			data
 		})
+	},
+
+	async getAverageByProduct(productId: string | number) {
+		return instance<number>({
+			url: `${UrlEnum.reviews}/average-by-product/${productId}`,
+			method: 'GET'
+		})
 	}
 }

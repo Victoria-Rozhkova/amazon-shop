@@ -3,13 +3,13 @@ export const Loader = () => {
 		margin: 'auto',
 		background: 'none',
 		display: 'block',
-		'shape-rendering': 'auto'
+		shapeRendering: 'auto'
 	}
 	return (
 		<svg
 			xmlns='http://www.w3.org/2000/svg'
 			xmlnsXlink='http://www.w3.org/1999/xlink'
-			style={style}
+			style={style as any}
 			width='231px'
 			height='231px'
 			viewBox='0 0 100 100'
@@ -19,11 +19,11 @@ export const Loader = () => {
 				cx='50'
 				cy='50'
 				r='25'
-				stroke-width='6'
+				strokeWidth='6'
 				stroke='#ff9902'
-				stroke-dasharray='39.269908169872416 39.269908169872416'
+				strokeDasharray='39.269908169872416 39.269908169872416'
 				fill='none'
-				stroke-linecap='round'
+				strokeLinecap='round'
 			>
 				<animateTransform
 					attributeName='transform'
