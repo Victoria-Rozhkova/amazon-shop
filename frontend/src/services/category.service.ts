@@ -1,10 +1,11 @@
+import { axiosClassic } from './../api/api.interceptor';
 import { UrlEnum } from './types/types'
 import { instance } from '@/api/api.interceptor'
 import { ICategory } from '@/types/category.interface'
 
 export const CategoryService = {
 	async getAll() {
-		return instance<ICategory[]>({
+		return axiosClassic<ICategory[]>({
 			url: UrlEnum.categories,
 			method: 'GET'
 		})

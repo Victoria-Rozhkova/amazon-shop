@@ -21,7 +21,7 @@ const AddToCartButton: FC<AddToCartButtonProps> = ({ product }) => {
 
 	return (
 		<div>
-			<button onClick={onToggleToCartHandler}>
+			<button onClick={onToggleToCartHandler} className='text-primary'>
 				{currentElement ? <RiShoppingCartFill /> : <RiShoppingCartLine />}
 			</button>
 		</div>

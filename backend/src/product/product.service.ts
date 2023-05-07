@@ -3,10 +3,7 @@ import { generateSlug } from 'src/utils/generate-slug'
 import { ProductDto } from './dto/product.dto'
 import { PrismaService } from './../prisma.service'
 import { Injectable, NotFoundException } from '@nestjs/common'
-import {
-	returnProductObject,
-	returnProductObjectFullest
-} from './return-product-object'
+import { returnProductObject } from './return-product-object'
 import { EnumProductSort, GetAllProductDto } from './dto/get-all-products.dto'
 import { Prisma } from '@prisma/client'
 
@@ -65,7 +62,8 @@ export class ProductService {
 			where: prismaSearchTermFilter,
 			orderBy: prismaSort,
 			skip,
-			take: perPage
+			take: perPage,
+			select: returnProductObject
 		})
 
 		return {
@@ -79,7 +77,7 @@ export class ProductService {
 	async byId(id: number) {
 		const product = await this.prisma.product.findUnique({
 			where: { id },
-			select: returnProductObjectFullest
+			select: returnProductObject
 		})
 
 		if (!product) throw new NotFoundException('Product not found')
@@ -90,7 +88,7 @@ export class ProductService {
 	async bySlug(slug: string) {
 		const product = await this.prisma.product.findUnique({
 			where: { slug },
-			select: returnProductObjectFullest
+			select: returnProductObject
 		})
 
 		if (!product) throw new NotFoundException('Product not found')
@@ -105,7 +103,7 @@ export class ProductService {
 					slug: categorySlug
 				}
 			},
-			select: returnProductObjectFullest
+			select: returnProductObject
 		})
 
 		if (!product) throw new NotFoundException('Product not found')
@@ -143,7 +141,7 @@ export class ProductService {
 				description: '',
 				name: '',
 				price: 0,
-				slug: '',
+				slug: ''
 			}
 		})
 

@@ -1,15 +1,13 @@
-import { IProduct } from '../../types/product.interface';
-import { DataFilters, ProductRequest, UrlEnum } from '../types/types';
+import { axiosClassic } from '@/api/api.interceptor';
+import { IProduct, PaginationProduct } from '@/types/product.interface'
+import { DataFilters, ProductRequest, UrlEnum } from '@/services/types/types'
 
-
-
-import { instance } from '@/api/api.interceptor';
-import { IReview } from '@/types/review.interface';
-
+import { IPagination } from '@/types/pagination.interface'
+import { instance } from '@/api/api.interceptor'
 
 export const ProductService = {
-	async getAll(queryData: DataFilters = {}) {
-		return instance<IProduct[]>({
+	async getAll(queryData: DataFilters & IPagination = {}) {
+		return axiosClassic<PaginationProduct>({
 			url: UrlEnum.products,
 			method: 'GET',
 			params: queryData
@@ -17,7 +15,7 @@ export const ProductService = {
 	},
 
 	async getSimilar(productId: number | string) {
-		return instance<IProduct[]>({
+		return axiosClassic<IProduct[]>({
 			url: `${UrlEnum.products}/similar/${productId}`,
 			method: 'GET'
 		})
@@ -31,14 +29,14 @@ export const ProductService = {
 	},
 
 	async getBySlug(slug: string) {
-		return instance<IProduct>({
+		return axiosClassic<IProduct>({
 			url: `${UrlEnum.products}/by-slug/${slug}`,
 			method: 'GET'
 		})
 	},
 
 	async getByCategory(categorySlug: string) {
-		return instance<IProduct[]>({
+		return axiosClassic<IProduct[]>({
 			url: `${UrlEnum.products}/by-category/${categorySlug}`,
 			method: 'GET'
 		})
