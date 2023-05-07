@@ -1,17 +1,17 @@
-import { axiosClassic } from '@/api/api.interceptor';
-import { IProduct, PaginationProduct } from '@/types/product.interface'
-import { DataFilters, ProductRequest, UrlEnum } from '@/services/types/types'
-
-import { IPagination } from '@/types/pagination.interface'
+import { axiosClassic } from '@/api/api.interceptor'
 import { instance } from '@/api/api.interceptor'
+import { DataFilters, ProductRequest, UrlEnum } from '@/services/types/types'
+import { IPagination } from '@/types/pagination.interface'
+import { IProduct, PaginationProduct } from '@/types/product.interface'
 
 export const ProductService = {
 	async getAll(queryData: DataFilters & IPagination = {}) {
-		return axiosClassic<PaginationProduct>({
+		const { data } = await axiosClassic<PaginationProduct>({
 			url: UrlEnum.products,
 			method: 'GET',
 			params: queryData
 		})
+		return data
 	},
 
 	async getSimilar(productId: number | string) {
