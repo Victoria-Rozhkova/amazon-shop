@@ -2,7 +2,10 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 
 import { AuthEnum, IAuthResponse, IEmailPassword } from './user.interface'
 import { errorCatch } from '@/api/api.helper'
-import { removeFromStorage } from '@/services/auth/auth.helper'
+import {
+	removeFromStorage,
+	saveTokenStorage
+} from '@/services/auth/auth.helper'
 import { AuthService } from '@/services/auth/auth.service'
 
 export const register = createAsyncThunk<IAuthResponse, IEmailPassword>(
@@ -10,6 +13,10 @@ export const register = createAsyncThunk<IAuthResponse, IEmailPassword>(
 	async (data, thunkApi) => {
 		try {
 			const response: any = await AuthService.auth(AuthEnum.register, data)
+			saveTokenStorage({
+				accessToken: response.accessToken,
+				refreshToken: response.refreshToken
+			})
 			return response
 		} catch (error) {
 			return thunkApi.rejectWithValue(error)
@@ -22,6 +29,10 @@ export const login = createAsyncThunk<IAuthResponse, IEmailPassword>(
 	async (data, thunkApi) => {
 		try {
 			const response: any = await AuthService.auth(AuthEnum.login, data)
+			saveTokenStorage({
+				accessToken: response.accessToken,
+				refreshToken: response.refreshToken
+			})
 			return response
 		} catch (error) {
 			return thunkApi.rejectWithValue(error)

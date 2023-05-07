@@ -3,28 +3,29 @@ import { FC } from 'react'
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 
 import { FavoriteButtonProps } from './types'
-import { useAuth } from '@/hooks/useAuth'
 import { useProfile } from '@/hooks/useProfile'
 import { UserService } from '@/services/user.service'
 
 const FavoriteButton: FC<FavoriteButtonProps> = ({ productId }) => {
 	const { profile } = useProfile()
 
-	const { invalidateQueries } = useQueryClient()
+	const queryClient = useQueryClient()
 
 	const { mutate } = useMutation(
 		['toggle favorite'],
 		() => UserService.toggleFavorite(productId),
 		{
 			onSuccess() {
-				invalidateQueries(['get profile'])
+				queryClient.invalidateQueries(['get profile'])
 			}
 		}
 	)
 
 	if (!profile) return null
 
-	const isExists = profile.favorites?.some(favorite => favorite.id === productId)
+	const isExists = profile.favorites?.some(
+		favorite => favorite.id === productId
+	)
 
 	const onToggleFavoriteHandler = () => {
 		mutate()

@@ -1,6 +1,6 @@
-import Cookies from 'js-cookie';
+import Cookies from 'js-cookie'
 
-import { IAuthResponse, ITokens, TokensEnum } from '@/store/user/user.interface';
+import { IAuthResponse, ITokens, TokensEnum } from '@/store/user/user.interface'
 
 export const getAccessToken = () => {
 	const accessToken = Cookies.get(TokensEnum.accessToken)
