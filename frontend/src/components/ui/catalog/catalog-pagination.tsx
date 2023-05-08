@@ -41,24 +41,24 @@ const CatalogPagination: FC<CatalogPaginationProps> = ({ data, title }) => {
 						))}
 					</div>
 					<div className='text-center mt-16'>
-						<Button
-							variant='orange'
-							size='small'
-							onClick={() => setPage(page + 1)}
-						>
-							Load more
-						</Button>
+						{Array.from({ length: response.length / 4 }).map((_, index) => {
+							const pageNumber = index + 1
+							return (
+								<Button
+									key={pageNumber}
+									variant={page === pageNumber ? 'orange' : 'white'}
+									size='small'
+									onClick={() => setPage(pageNumber)}
+									className='mx-3'
+								>
+									{pageNumber}
+								</Button>
+							)
+						})}
 					</div>
 				</>
 			) : (
-				<>
-					<div>There are no products</div>
-					<div className='text-center mt-16'>
-						<Button variant='orange' size='small' onClick={() => setPage(1)}>
-							Back
-						</Button>
-					</div>
-				</>
+				<div>There are no products</div>
 			)}
 		</section>
 	)
